@@ -1081,7 +1081,7 @@
   }
 
 .page-width{
-  padding: 0px 25px 0px 125px;
+  padding: 0px 25px 0px 25px;
   max-width: 100%;
 }
 @media screen and (max-width: 500px){
@@ -1118,6 +1118,7 @@
     justify-content: center;
     /* align-items: center; */
     width: 30%;
+    margin-left: 100px;
 }
 
 .product-info__description-pc {
@@ -1391,6 +1392,7 @@ table td {
 .product-info__pc {
     width: 100%;
     padding-top: 2rem;
+    margin-left: 0;
 }
 .figureImg {
     width: 100% !important;

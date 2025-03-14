@@ -2,13 +2,24 @@
   {% for block in section.blocks %}
     {% if block.type == 'accordion' %}
       <div class="accordion-item">
-        <button class="accordion-header" onclick="toggleAccordion(this)">
-          {% if block.settings.icon != blank %}
-            <span class="accordion-icon">{{ block.settings.icon }}</span>
-          {% endif %}
-          {{ block.settings.title }}
-          <span class="accordion-toggle">+</span>
-        </button>
+        <div class="accordion-header" onclick="toggleAccordion(this)">
+          <div>
+            {% if block.settings.icon != blank %}
+              <span class="accordion-icon">{{ block.settings.icon }}</span>
+            {% endif %}
+            {{ block.settings.title | upcase }}
+          </div>
+          <svg
+            class="accordion-toggle"
+            xmlns="http://www.w3.org/2000/svg"
+            width="24"
+            height="25"
+            viewBox="0 0 24 25"
+            fill="none"
+          >
+            <path fill-rule="evenodd" clip-rule="evenodd" d="M11.6022 9.36787C11.8219 9.1482 12.178 9.1482 12.3977 9.36787L18.1326 15.1027C18.3522 15.3224 18.3522 15.6785 18.1326 15.8982L17.8674 16.1634C17.6477 16.3831 17.2916 16.3831 17.0719 16.1634L12 11.0914L6.92802 16.1634C6.70834 16.3831 6.35224 16.3831 6.13257 16.1634L5.86737 15.8982C5.64769 15.6785 5.64769 15.3224 5.86737 15.1027L11.6022 9.36787Z" fill="black"/>
+          </svg>
+        </div>
         <div class="accordion-content">
           {{ block.settings.content }}
         </div>
@@ -18,13 +29,19 @@
 </div>
 
 <style>
+  .accordion {
+    margin-top: 14px;
+    display: flex;
+    flex-direction: column;
+    margin-top: 14px;
+    max-width: 400px;
+  }
   .accordion-item {
-    border-bottom: 1px solid #ddd;
+    border-bottom: 1px solid black;
   }
   .accordion-header {
     width: 100%;
-    background: #f8f8f8;
-    padding: 10px;
+    padding: 16px 0px;
     text-align: left;
     cursor: pointer;
     border: none;
@@ -32,6 +49,7 @@
     align-items: center;
     justify-content: space-between;
     font-weight: bold;
+    font-size: 16px;
   }
   .accordion-icon {
     margin-right: 10px;
@@ -39,8 +57,11 @@
   .accordion-toggle {
     font-size: 18px;
     transition: transform 0.3s ease;
+    transform: rotate(180deg);
   }
   .accordion-content {
+    font-family: sans-serif;
+    font-size: 16px;
     line-height: 1.2;
     max-height: 0;
     overflow: hidden;
@@ -50,10 +71,21 @@
 
   .accordion-item.active .accordion-content {
     display: block;
-    padding: 10px;
+    margin-bottom: 16px;
   }
   .accordion-item.active .accordion-toggle {
-    transform: rotate(45deg); /* Changes "+" to "×" when opened */
+    transform: rotate(360deg); /* Changes "+" to "×" when opened */
+  }
+  .accordion_section_mobile {
+    display: none;
+  }
+  @media screen and (max-width: 750px) {
+    .accordion_section_desktop {
+      display: none;
+    }
+    .accordion_section_mobile {
+      display: block;
+    }
   }
 </style>
 
@@ -65,28 +97,14 @@
 
     let isOpen = item.classList.contains('active');
 
-    // Close all other accordions smoothly
-    document.querySelectorAll('.accordion-item').forEach((el) => {
-      if (el !== item) {
-        el.classList.remove('active');
-        let contentEl = el.querySelector('.accordion-content');
-        contentEl.style.maxHeight = '0px'; // Set max-height to 0 for smooth close
-        contentEl.style.opacity = '0';
-        el.querySelector('.accordion-toggle').innerText = '+'; // Reset symbol
-      }
-    });
-
-    // Toggle the clicked accordion
     if (!isOpen) {
       item.classList.add('active');
       content.style.maxHeight = content.scrollHeight + 'px';
       content.style.opacity = '1';
     } else {
       item.classList.remove('active');
-      // Smooth close transition
-      content.style.maxHeight = '0px'; // Gradually shrink content height
-      content.style.opacity = '0'; // Fade out the content
-      toggleSymbol.innerText = '+'; // Reset the toggle symbol
+      content.style.maxHeight = '0px';
+      content.style.opacity = '0';
     }
   }
 </script>

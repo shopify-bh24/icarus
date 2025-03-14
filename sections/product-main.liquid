@@ -128,9 +128,9 @@
     <div class="product-info__pc">
       <h2 class="product-info__title product-info__title-top">{{ product.title }}</h2>
 
-        {%  render 'accordion' %}
-
-
+      <div class="accordion_section_desktop">
+        {% render 'accordion' %}
+      </div>
     </div>
 
     <div class="figureImg fade-in" id="gallery">
@@ -154,7 +154,7 @@
         <span class="nav-arrow mobile-cursor-left" id="prev-arrow">
           <img
             src="
-                        {% if settings.image-switches == 'black' %}{{ 'arrow-left.svg' | asset_url | image_url: '32x32' }} {% elsif settings.image-switches == 'white' %}{{ 'arrow-left-white.svg' | asset_url | image_url: '32x32' }} {% endif %}
+                                                    {% if settings.image-switches == 'black' %}{{ 'arrow-left.svg' | asset_url | image_url: '32x32' }} {% elsif settings.image-switches == 'white' %}{{ 'arrow-left-white.svg' | asset_url | image_url: '32x32' }} {% endif %}
             "
           >
         </span>
@@ -162,7 +162,7 @@
         <span class="nav-arrow mobile-cursor-right" id="next-arrow">
           <img
             src="
-                        {% if settings.image-switches == 'black' %}{{ 'arrow-right.svg' | asset_url | image_url: '32x32' }} {% elsif settings.image-switches == 'white' %}{{ 'arrow-right-white.svg' | asset_url | image_url: '32x32' }} {% endif %}
+                                                    {% if settings.image-switches == 'black' %}{{ 'arrow-right.svg' | asset_url | image_url: '32x32' }} {% elsif settings.image-switches == 'white' %}{{ 'arrow-right-white.svg' | asset_url | image_url: '32x32' }} {% endif %}
             "
           >
         </span>
@@ -218,6 +218,10 @@
               {% endcase %}
             {% endfor %}
           </div>
+        </div>
+
+        <div class="accordion_section_mobile">
+          {% render 'accordion' %}
         </div>
 
         {% comment %} <div class="product-info__description-mobile">{{ product.description }}</div> {% endcomment %}

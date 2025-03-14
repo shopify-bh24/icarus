@@ -1,0 +1,92 @@
+<div class="accordion">
+  {% for block in section.blocks %}
+    {% if block.type == 'accordion' %}
+      <div class="accordion-item">
+        <button class="accordion-header" onclick="toggleAccordion(this)">
+          {% if block.settings.icon != blank %}
+            <span class="accordion-icon">{{ block.settings.icon }}</span>
+          {% endif %}
+          {{ block.settings.title }}
+          <span class="accordion-toggle">+</span>
+        </button>
+        <div class="accordion-content">
+          {{ block.settings.content }}
+        </div>
+      </div>
+    {% endif %}
+  {% endfor %}
+</div>
+
+<style>
+  .accordion-item {
+    border-bottom: 1px solid #ddd;
+  }
+  .accordion-header {
+    width: 100%;
+    background: #f8f8f8;
+    padding: 10px;
+    text-align: left;
+    cursor: pointer;
+    border: none;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-weight: bold;
+  }
+  .accordion-icon {
+    margin-right: 10px;
+  }
+  .accordion-toggle {
+    font-size: 18px;
+    transition: transform 0.3s ease;
+  }
+  .accordion-content {
+    line-height: 1.2;
+    max-height: 0;
+    overflow: hidden;
+    opacity: 0;
+    transition: max-height 0.2s ease-out, opacity 0.2s ease-out; /* smooth transition for both max-height and opacity */
+  }
+
+  .accordion-item.active .accordion-content {
+    display: block;
+    padding: 10px;
+  }
+  .accordion-item.active .accordion-toggle {
+    transform: rotate(45deg); /* Changes "+" to "×" when opened */
+  }
+</style>
+
+<script>
+  function toggleAccordion(btn) {
+    let item = btn.parentElement;
+    let content = item.querySelector('.accordion-content');
+    let toggleSymbol = btn.querySelector('.accordion-toggle');
+
+    let isOpen = item.classList.contains('active');
+
+    // Close all other accordions smoothly
+    document.querySelectorAll('.accordion-item').forEach((el) => {
+      if (el !== item) {
+        el.classList.remove('active');
+        let contentEl = el.querySelector('.accordion-content');
+        contentEl.style.maxHeight = '0px'; // Set max-height to 0 for smooth close
+        contentEl.style.opacity = '0';
+        el.querySelector('.accordion-toggle').innerText = '+'; // Reset symbol
+      }
+    });
+
+    // Toggle the clicked accordion
+    if (!isOpen) {
+      item.classList.add('active');
+      content.style.maxHeight = content.scrollHeight + 'px';
+      content.style.opacity = '1';
+    } else {
+      item.classList.remove('active');
+      // Smooth close transition
+      content.style.maxHeight = '0px'; // Gradually shrink content height
+      content.style.opacity = '0'; // Fade out the content
+      toggleSymbol.innerText = '+'; // Reset the toggle symbol
+    }
+  }
+</script>

@@ -1,0 +1,145 @@
+{% assign cross_sell_product = product.metafields.custom.cross_sell.value %}
+
+{% if cross_sell_product %}
+  <div class="cross-sell">
+    <h2>Complete the look</h2>
+    <div class="cross-sell-item">
+      <div class="cross-sell-item-left">
+        <a href="{{ cross_sell_product.url }}">
+          <img src="{{ cross_sell_product.featured_image | img_url: '300x300' }}" alt="{{ cross_sell_product.title }}">
+        </a>
+        <div>
+          {% if cross_sell_product.variants.size > 1 %}
+            {% for option in cross_sell_product.options_with_values %}
+              <div class="cross-sell-product-options">
+                <div class="cross-sell-option-values">
+                  {% for value in option.values %}
+                    <button
+                      type="button"
+                      class="cross-sell-option-value"
+                      data-option="{{ option.position }}"
+                      data-value="{{ value | escape }}"
+                    >
+                      {{ value }}
+                    </button>
+                  {% endfor %}
+                </div>
+              </div>
+            {% endfor %}
+          {% endif %}
+        </div>
+      </div>
+      <div class="cross-sell-item-right">
+        <div>
+          <h3>{{ cross_sell_product.title }}</h3>
+          <p class="price">{{ cross_sell_product.price | money }}</p>
+        </div>
+        <form method="post" action="/cart/add" class="cross-sell-form">
+          <input type="hidden" name="id" value="{{ cross_sell_product.variants.first.id }}" class="cross-sell-variant-id">
+          <button type="submit">Add to Cart</button>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    document.querySelectorAll('.cross-sell-option-value').forEach(button => {
+      button.addEventListener('click', function() {
+        const optionIndex = this.getAttribute('data-option');
+        const value = this.getAttribute('data-value');
+        const productVariants = {{ cross_sell_product.variants | json }};
+        
+        // Update active state
+        document.querySelectorAll(`.cross-sell-option-value[data-option="${optionIndex}"]`).forEach(btn => {
+          btn.classList.remove('active');
+        });
+        this.classList.add('active');
+
+        // Find the matching variant ID
+        let selectedOptions = {};
+        document.querySelectorAll('.cross-sell-option-value.active').forEach(activeButton => {
+          selectedOptions[`option${activeButton.getAttribute('data-option')}`] = activeButton.getAttribute('data-value');
+        });
+
+        const matchingVariant = productVariants.find(variant => {
+          return Object.keys(selectedOptions).every(optionKey => {
+            return variant[optionKey] === selectedOptions[optionKey];
+          });
+        });
+
+        if (matchingVariant) {
+          document.querySelector('.cross-sell-variant-id').value = matchingVariant.id;
+        }
+      });
+    });
+  </script>
+
+  <style>
+    .cross-sell {
+      margin-top: 120px;
+    }
+    .cross-sell h2 {
+      margin-bottom: 20px;
+      font-size: 18px;
+    }
+    .cross-sell h3 {
+      font-size: 16px;
+      margin-bottom: 6px;
+    }
+    .cross-sell-products {
+      display: flex;
+      gap: 15px;
+      overflow-x: auto;
+    }
+    .cross-sell-item {
+      display: flex;
+      text-align: center;
+      gap: 12px;
+    }
+    .cross-sell-item-left,
+    .cross-sell-item-right {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+    .cross-sell-item-right div {
+      text-align: left;
+    }
+    .cross-sell-item img {
+      width: 100%;
+      height: auto;
+    }
+    .price {
+      font-weight: bold;
+      color: #d9534f;
+    }
+    .cross-sell-option-values {
+        display: flex;
+        gap: 10px;
+    }
+    .cross-sell-option-value {
+      color: #000;
+      background-color: #fff;
+      padding: 8px;
+      border: none;
+      cursor: pointer;
+      width: 100%;
+    }
+    .cross-sell-option-value.active {
+      border: 1px solid black;
+    }
+    .cross-sell-form button {
+      background-color: #000;
+      color: #fff;
+      padding: 8px;
+      border: none;
+      cursor: pointer;
+      width: 100%;
+    }
+    @media screen and (max-width: 750px) {
+      .cross-sell {
+        margin-top: 30px;
+      }
+    }
+  </style>
+{% endif %}

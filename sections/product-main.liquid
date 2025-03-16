@@ -154,7 +154,7 @@
         <span class="nav-arrow mobile-cursor-left" id="prev-arrow">
           <img
             src="
-                                                    {% if settings.image-switches == 'black' %}{{ 'arrow-left.svg' | asset_url | image_url: '32x32' }} {% elsif settings.image-switches == 'white' %}{{ 'arrow-left-white.svg' | asset_url | image_url: '32x32' }} {% endif %}
+                                                                                {% if settings.image-switches == 'black' %}{{ 'arrow-left.svg' | asset_url | image_url: '32x32' }} {% elsif settings.image-switches == 'white' %}{{ 'arrow-left-white.svg' | asset_url | image_url: '32x32' }} {% endif %}
             "
           >
         </span>
@@ -162,15 +162,22 @@
         <span class="nav-arrow mobile-cursor-right" id="next-arrow">
           <img
             src="
-                                                    {% if settings.image-switches == 'black' %}{{ 'arrow-right.svg' | asset_url | image_url: '32x32' }} {% elsif settings.image-switches == 'white' %}{{ 'arrow-right-white.svg' | asset_url | image_url: '32x32' }} {% endif %}
+                                                                                {% if settings.image-switches == 'black' %}{{ 'arrow-right.svg' | asset_url | image_url: '32x32' }} {% elsif settings.image-switches == 'white' %}{{ 'arrow-right-white.svg' | asset_url | image_url: '32x32' }} {% endif %}
             "
           >
         </span>
       </div>
     {% endif %}
 
-    <div class="product-info__main">
-      <form action="/cart/add" method="post" enctype="multipart/form-data" id="AddToCartForm">
+    {% assign cross_sell_product = product.metafields.custom.cross_sell.value %}
+    <div class="product-info__main {% unless cross_sell_product %}no-cross-sell{% endunless %}">
+      <form
+        class="product-info__main-form"
+        action="/cart/add"
+        method="post"
+        enctype="multipart/form-data"
+        id="AddToCartForm"
+      >
         <input type="hidden" name="id" value="{{ current_variant.id }}">
 
         <div class="product-info__parent">
@@ -219,13 +226,13 @@
             {% endfor %}
           </div>
         </div>
-
-        <div class="accordion_section_mobile">
-          {% render 'accordion' %}
-        </div>
-
-        {% comment %} <div class="product-info__description-mobile">{{ product.description }}</div> {% endcomment %}
       </form>
+      <div class="accordion_section_mobile">
+        {% render 'accordion' %}
+      </div>
+      {% if cross_sell_product %}
+        {% render 'cross-sell' %}
+      {% endif %}
     </div>
   </div>
 </div>

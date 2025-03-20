@@ -1,1 +1,22 @@
-{"sections":{"video_background_qzB9FJ":{"type":"video-background","settings":{"background_video":"https:\/\/cdn.shopify.com\/videos\/c\/o\/v\/4dedaab24fb54fbe8ece5a44770e4379.mp4"}}},"order":["video_background_qzB9FJ"]}
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "video_background_qzB9FJ": {
+      "type": "video-background",
+      "settings": {
+        "background_video": "https://cdn.shopify.com/videos/c/o/v/fc32736d73474fa7a14e825db8302e55.mp4"
+      }
+    }
+  },
+  "order": [
+    "video_background_qzB9FJ"
+  ]
+}

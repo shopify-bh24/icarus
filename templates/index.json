@@ -12,7 +12,8 @@
     "video_background_qzB9FJ": {
       "type": "video-background",
       "settings": {
-        "background_video": "https://cdn.shopify.com/videos/c/o/v/b011be3062534b3c90f0bfd8fd258948.mp4"
+        "background_video": "https://cdn.shopify.com/videos/c/o/v/b011be3062534b3c90f0bfd8fd258948.mp4",
+        "background_image": "shopify://shop_images/LANDING_PAGE.jpg"
       }
     }
   },

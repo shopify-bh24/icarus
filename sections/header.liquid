@@ -213,7 +213,7 @@
           {% endif %}
         </div>
 
-        {% comment %} <div class="logo-wrapper">
+        <div class="logo-wrapper">
           <a href="{{ routes.root_url }}" class="header__heading-link">
             {%- if section.settings.logo != blank -%}
               <img
@@ -226,12 +226,12 @@
               <span class="header-logo-text">{{ shop.name }}</span>
             {%- endif -%}
           </a>
-        </div> {% endcomment %}
+        </div>
         <div class="header-menu">
           {% if section.settings.menu %}
             {% for link in linklists[section.settings.menu].links %}
               <div class="menu-item{% if link.links.size > 0 %} has-children{% endif %}">
-                <a href="{{ link.url }}" class="menu-link">{{ link.title }}</a>
+                <a href="{{ link.url }}" class="menu-link">{{ link.title }}</a> 
                 {% if link.links.size > 0 %}
                   <div class="submenu">
                     {% for childlink in link.links %}

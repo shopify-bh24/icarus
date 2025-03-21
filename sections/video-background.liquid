@@ -1,13 +1,4 @@
-{% if section.settings.background_video != blank %}
-  <div class="video-container">
-    <video autoplay loop muted playsinline>
-      <source src="{{ section.settings.background_video }}" type="video/mp4">
-      Your browser does not support the video tag.
-    </video>
-  </div>
-{% endif %}
-
-<style>
+{% style %}
   .video-container {
     position: absolute;
     top: 0;
@@ -16,13 +7,42 @@
     height: 100%;
     z-index: -1;
     overflow: hidden;
+    background-color: #000; /* Fallback background color */
   }
+
+  {% if section.settings.background_image != blank %}
+    .video-container {
+      background-image: url('{{ section.settings.background_image | img_url: '1920x' }}');
+      background-repeat: no-repeat;
+      background-position: center;
+      background-size: cover;
+    }
+  {% endif %}
   .video-container video {
+    display: none;
     width: 100%;
     height: 100%;
     object-fit: cover;
   }
-</style>
+
+  @media screen and (max-width: 768px){
+    .video-container{
+      background: none;
+    }
+
+  .video-container video { 
+    display: initial;
+  }
+  }  
+{% endstyle %}
+{% if section.settings.background_video != blank %}
+  <div class="video-container">
+    <video autoplay loop muted playsinline>
+      <source src="{{ section.settings.background_video }}" type="video/mp4">
+      Your browser does not support the video tag.
+    </video>
+  </div>
+{% endif %}
 
 {% schema %}
 {
@@ -33,6 +53,12 @@
       "id": "background_video",
       "label": "Video URL",
       "info": "Upload your video in Shopify → Content → Files and paste the URL here."
+    },
+    {
+      "type": "image_picker",
+      "id": "background_image",
+      "label": "Background Image",
+      "info": "Select an image for screen sizes 768px and below."
     }
   ],
   "presets": [

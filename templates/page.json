@@ -1,1 +1,98 @@
-{"sections":{"main":{"type":"main-page","settings":{}},"ss_image_with_text_11_weDYWA":{"type":"ss-image-with-text-11","blocks":{"item_gah8hm":{"type":"item","settings":{"heading":"<p>Our Mission<\/p>","text":"Our mission is to offer high performance Nordic beauty for a better future."}},"item_xNUKBB":{"type":"item","settings":{"heading":"<p>Integrity<\/p>","text":"We are always open, truthful, authentic and respectful of our Nordic values."}},"item_38BqbE":{"type":"item","settings":{"heading":"<p>Inspired<\/p>","text":"We encourage creativity, passion and innovation to deliver true Nordic beauty to our consumers."}}},"block_order":["item_gah8hm","item_xNUKBB","item_38BqbE"],"settings":{"body_gap":20,"body_gap_mobile":20,"content_horizontal_align":"start","content_horizontal_align_mobile":"center","heading_custom":false,"heading_font":"josefin_sans_n4","heading_size":13,"heading_size_mobile":13,"heading_height":130,"icon_width":60,"icon_width_mobile":60,"icon_mt":16,"text_custom":false,"text_font":"josefin_sans_n4","text_size":42,"text_size_mobile":30,"text_height":130,"text_mt":16,"images_width":55,"images_position":"right","images_radius":0,"images_border_thickness":0,"image_ratio":"portrait","image_ratio_mobile":"square","heading_color":"#1D252D","text_color":"#BBBDC0","text_active_color":"#1D252D","images_border_color":"#000000","background_color":"#FFFFFF","background_gradient":"","border_color":"#000000","margin_top":0,"margin_bottom":0,"margin_horizontal":3,"margin_horizontal_mobile":1.5,"padding_top":36,"padding_bottom":36,"padding_horizontal":0,"padding_horizontal_mobile":0,"full_width":false,"content_width":130,"border_thickness":0,"lazy":true,"section_radius":0}}},"order":["main","ss_image_with_text_11_weDYWA"]}
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "main": {
+      "type": "main-page",
+      "settings": {}
+    },
+    "ss_image_with_text_11_bHYTfJ": {
+      "type": "ss-image-with-text-11",
+      "blocks": {
+        "item_xrBhEW": {
+          "type": "item",
+          "settings": {
+            "heading": "<p>Our Mission</p>",
+            "text": "Our mission is to offer high performance Nordic beauty for a better future."
+          }
+        },
+        "item_ERrT77": {
+          "type": "item",
+          "settings": {
+            "heading": "<p>Integrity</p>",
+            "text": "We are always open, truthful, authentic and respectful of our Nordic values."
+          }
+        },
+        "item_mk647h": {
+          "type": "item",
+          "settings": {
+            "heading": "<p>Inspired</p>",
+            "text": "We encourage creativity, passion and innovation to deliver true Nordic beauty to our consumers."
+          }
+        }
+      },
+      "block_order": [
+        "item_xrBhEW",
+        "item_ERrT77",
+        "item_mk647h"
+      ],
+      "settings": {
+        "body_gap": 20,
+        "body_gap_mobile": 20,
+        "content_horizontal_align": "start",
+        "content_horizontal_align_mobile": "start",
+        "heading_custom": false,
+        "heading_font": "josefin_sans_n4",
+        "heading_size": 13,
+        "heading_size_mobile": 13,
+        "heading_height": 130,
+        "icon_width": 60,
+        "icon_width_mobile": 60,
+        "icon_mt": 16,
+        "text_custom": false,
+        "text_font": "josefin_sans_n4",
+        "text_size": 42,
+        "text_size_mobile": 30,
+        "text_height": 130,
+        "text_mt": 16,
+        "images_width": 55,
+        "images_position": "left",
+        "images_radius": 0,
+        "images_border_thickness": 0,
+        "image_ratio": "portrait",
+        "image_ratio_mobile": "square",
+        "heading_color": "#1D252D",
+        "text_color": "#BBBDC0",
+        "text_active_color": "#1D252D",
+        "images_border_color": "#000000",
+        "background_color": "#FFFFFF",
+        "background_gradient": "",
+        "border_color": "#000000",
+        "margin_top": 0,
+        "margin_bottom": 0,
+        "margin_horizontal": 3,
+        "margin_horizontal_mobile": 1.5,
+        "padding_top": 36,
+        "padding_bottom": 36,
+        "padding_horizontal": 0,
+        "padding_horizontal_mobile": 0,
+        "full_width": false,
+        "content_width": 130,
+        "border_thickness": 0,
+        "lazy": true,
+        "section_radius": 0
+      }
+    }
+  },
+  "order": [
+    "main",
+    "ss_image_with_text_11_bHYTfJ"
+  ]
+}
